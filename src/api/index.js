@@ -1,34 +1,37 @@
 import axios from 'axios'
 
-const baseURL = 'https://frontend-take-home-service.fetch.com'
-const config = { withCredentials: true }
+const api = axios.create({
+  baseURL: 'https://frontend-take-home-service.fetch.com',
+  withCredentials: true
+})
 
-function login (payload) {
-  return axios.post(`${baseURL}/auth/login`, payload, config)
+function login(payload) {
+  return api.post('/auth/login', payload)
 }
 
-function logout () {
-  return axios.post(`${baseURL}/auth/logout`, {}, config)
-} 
+function logout() {
+  return api.post('/auth/logout')
+}
 
-async function fetchSearchData (url, searchParams) { 
-  const { data: searchData } = await axios.get(`${baseURL}${url}`, { ...config, params: searchParams })
-  const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, config)
-  
+// Search
+async function fetchSearchData(url, searchParams) {
+  const { data: searchData } = await api.get(url, { params: searchParams })
+  const { data: nextSearchData } = await api.get(searchData.next)
+
   return {
     ...searchData,
     next: nextSearchData.resultIds.length ? searchData.next : ''
   }
 }
 
-async function fetchDogs (resultIds) {
-  const { data } = await axios.post(`${baseURL}/dogs`, resultIds, config)
+async function fetchDogs(resultIds) {
+  const { data } = await api.post('/dogs', resultIds)
   return data
 }
 
-async function fetchMatchedDogId (payload) {
-  const { data: { match: matchedDogId } } = await axios.post(`${baseURL}/dogs/match`, payload, config)
-  return matchedDogId
+async function fetchMatchedDogId(payload) {
+  const { data } = await api.post('/dogs/match', payload)
+  return data.match
 }
 
 export {
