@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/PupMatch-Rescue/static/css/main.4ed7bf23.css",
-    "main.js": "/PupMatch-Rescue/static/js/main.1465eb8f.js",
+    "main.js": "/PupMatch-Rescue/static/js/main.0d3b7293.js",
     "index.html": "/PupMatch-Rescue/index.html",
     "main.4ed7bf23.css.map": "/PupMatch-Rescue/static/css/main.4ed7bf23.css.map",
-    "main.1465eb8f.js.map": "/PupMatch-Rescue/static/js/main.1465eb8f.js.map"
+    "main.0d3b7293.js.map": "/PupMatch-Rescue/static/js/main.0d3b7293.js.map"
   },
   "entrypoints": [
     "static/css/main.4ed7bf23.css",
-    "static/js/main.1465eb8f.js"
+    "static/js/main.0d3b7293.js"
   ]
 }
