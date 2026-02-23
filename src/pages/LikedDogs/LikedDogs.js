@@ -2,7 +2,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { DogList } from '../../components/DogList'
 import { Button } from '../../components/Buttons'
-import { fetchMachedDogId } from '../../api'
+import { fetchMatchedDogId } from '../../api'
 
 export function LikedDogs () {
   const navigate = useNavigate()
@@ -11,7 +11,7 @@ export function LikedDogs () {
   async function handleMatchSubmit () {
     try {
       const payload = likedDogs.map(dog => dog.id)
-      const matchedDogId = await fetchMachedDogId(payload)
+      const matchedDogId = await fetchMatchedDogId(payload)
       const matchedDog = likedDogs.find(dog => dog.id === matchedDogId)
       
       navigate('/PupMatch-Rescue/matched-dog', { state: { matchedDog }})

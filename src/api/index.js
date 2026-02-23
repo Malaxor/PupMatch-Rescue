@@ -26,7 +26,7 @@ async function fetchDogs (resultIds) {
   return data
 }
 
-async function fetchMachedDogId (payload) {
+async function fetchMatchedDogId (payload) {
   const { data: { match: matchedDogId } } = await axios.post(`${baseURL}/dogs/match`, payload, config)
   return matchedDogId
 }
@@ -36,5 +36,5 @@ export {
   logout,
   fetchSearchData,
   fetchDogs,
-  fetchMachedDogId
+  fetchMatchedDogId
 }
