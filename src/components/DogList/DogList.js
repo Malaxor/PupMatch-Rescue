@@ -17,7 +17,7 @@ export function DogList({ dogs, matchedDog }) {
   return (
     <ol id="dog-list">
       {matchedDog && <MatchedDog key={matchedDog.id} dog={matchedDog} />}
-      {dogs.map((dog) => <Dog key={dog.id} dog={dog} />)}
+      {dogs?.map((dog) => <Dog key={dog.id} dog={dog} />)}
     </ol>
   )
 }
