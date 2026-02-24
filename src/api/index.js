@@ -1,3 +1,5 @@
+import { api } from './client'
+
 function login(payload) {
   return api.post('/auth/login', payload)
 }
