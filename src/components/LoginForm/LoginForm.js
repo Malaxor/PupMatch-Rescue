@@ -6,7 +6,7 @@ import { login } from '../../api'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
-export function LoginForm({ isOpen, handleCloseModal, handleLogin }) {
+export function LoginForm ({ isOpen, handleCloseModal, handleLogin }) {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',

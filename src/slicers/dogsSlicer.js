@@ -38,7 +38,7 @@ const dogsSlicer = createSlice({
       }
     },
     removeLikedDog(state, action) {
-      state.likedDogs = state.likedDogs.filter(likedDog => likedDog.id !== action.payload.id)
+      state.likedDogs = state.likedDogs.filter(likedDog => likedDog.id !== action.payload)
     },
     resetState() {
       return initialState

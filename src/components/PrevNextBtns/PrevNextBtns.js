@@ -4,11 +4,11 @@ import { addDogs, setSearchQueries } from '../../slicers'
 import { Button } from '../Buttons'
 import { fetchDogs, fetchSearchData } from '../../api'
 
-export function PrevNextBtns() {
+export function PrevNextBtns () {
   const dispatch = useDispatch()
   const { prevSearchQuery, nextSearchQuery } = useSelector(state => state.dogs)
 
-  async function onBtnClick(searchQuery) {
+  async function onBtnClick (searchQuery) {
     try {
       const searchData = await fetchSearchData(searchQuery)
       const dogs = await fetchDogs(searchData.resultIds)

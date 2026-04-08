@@ -12,7 +12,7 @@ export function DogsSearchList () {
     <div id='dogs-search-list' role="region" aria-labelledby="message-for-user">
       <p id="message-for-user">Omitting search parameters still returns results.</p>
       <DogSearch />
-      {likedDogs.length > 0 && (
+      {likedDogs.length && (
         <Link className="link" to="/PupMatch-Rescue/liked-dogs">
           View Liked Dogs {likedDogs.length}
         </Link>

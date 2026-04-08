@@ -60,7 +60,7 @@ export function DogSearch () {
     return params
   }
 
-  async function onFormSubmit(e) {
+  async function onFormSubmit (e) {
     e.preventDefault()
 
     dispatch(setLoading(true))
@@ -81,7 +81,11 @@ export function DogSearch () {
 
     const dogsArr = await fetchDogs(searchData.resultIds)
     dispatch(setLoading(false))
-    dispatch(dogsArr.length > 0 ? addDogs(dogsArr) : setHasResults(false))
+    if (dogsArr.length) {
+     dispatch(addDogs(dogsArr));
+    } else {
+     dispatch(setHasResults(false));
+  }
   } catch (err) {
     console.error('Form submit error:', err)
   }
