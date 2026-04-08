@@ -71,7 +71,6 @@ export function DogSearch () {
       nextSearchQuery: ''
     }))
 
-  try {
     const searchParams = buildSearchParams()
     const searchData = await fetchSearchData('/dogs/search', searchParams)
     
@@ -81,13 +80,11 @@ export function DogSearch () {
 
     const dogsArr = await fetchDogs(searchData.resultIds)
     dispatch(setLoading(false))
+    
     if (dogsArr.length) {
      dispatch(addDogs(dogsArr));
     } else {
      dispatch(setHasResults(false));
-  }
-  } catch (err) {
-    console.error('Form submit error:', err)
   }
 }
 

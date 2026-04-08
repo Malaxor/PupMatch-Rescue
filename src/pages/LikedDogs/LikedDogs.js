@@ -9,15 +9,11 @@ export function LikedDogs () {
   const { likedDogs }  = useSelector(state => state.dogs)
 
   async function handleMatchSubmit () {
-    try {
-      const payload = likedDogs.map(dog => dog.id)
-      const matchedDogId = await fetchMatchedDogId(payload)
-      const matchedDog = likedDogs.find(dog => dog.id === matchedDogId)
-      
-      navigate('/PupMatch-Rescue/matched-dog', { state: { matchedDog }})
-    } catch (error) {
-      console.error('Error matching with dog:', error)
-    }
+    const payload = likedDogs.map(dog => dog.id)
+    const matchedDogId = await fetchMatchedDogId(payload)
+    const matchedDog = likedDogs.find(dog => dog.id === matchedDogId)
+    
+    navigate('/PupMatch-Rescue/matched-dog', { state: { matchedDog }})
   }
   
   return ( 

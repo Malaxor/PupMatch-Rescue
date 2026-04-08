@@ -24,19 +24,11 @@ export function LoginForm ({ isOpen, handleCloseModal, handleLogin }) {
 
   async function handleSubmit (e) {
     e.preventDefault()
-
-    try {
-      await login({
-        name: name.trim(),
-        email: email.trim()
-      })
-      setFormData({ name: '', email: '' })
-      handleCloseModal()
-      handleLogin()
-      navigate('/PupMatch-Rescue/dog-search-list')
-    } catch (error) {
-      console.error('Login failed: ', error)
-    }
+    await login({ name: name.trim(), email: email.trim() })
+    setFormData({ name: '', email: '' })
+    handleCloseModal()
+    handleLogin()
+    navigate('/PupMatch-Rescue/dog-search-list')
   }
 
   return (

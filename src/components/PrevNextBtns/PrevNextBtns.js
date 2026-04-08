@@ -9,18 +9,14 @@ export function PrevNextBtns () {
   const { prevSearchQuery, nextSearchQuery } = useSelector(state => state.dogs)
 
   async function onBtnClick (searchQuery) {
-    try {
-      const searchData = await fetchSearchData(searchQuery)
-      const dogs = await fetchDogs(searchData.resultIds)
+    const searchData = await fetchSearchData(searchQuery)
+    const dogs = await fetchDogs(searchData.resultIds)
 
-      dispatch(addDogs(dogs))
-      dispatch(setSearchQueries({
-        prevSearchQuery: searchData.prev,
-        nextSearchQuery: searchData.next
-      }))
-    } catch (err) {
-      console.error("Error fetching dogs or search pages: ", err)
-    }
+    dispatch(addDogs(dogs))
+    dispatch(setSearchQueries({
+      prevSearchQuery: searchData.prev,
+      nextSearchQuery: searchData.next
+    }))
   }
 
   return (

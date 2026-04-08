@@ -1,31 +1,64 @@
 import { api } from './client'
 
-function login (payload) {
-  return api.post('/auth/login', payload)
+function handleError (error, message) {
+  if (error.response) {
+    // Server responded with a status code outside 2xx
+    throw new Error(`${message}: ${error.response.data?.message || error.response.status}`)
+  } else if (error.request) {
+    // Request was made but no response received
+    throw new Error(`${message}: No response from server`)
+  } else {
+    // Something else happened
+    throw new Error(`${message}: ${error.message}`)
+  }
 }
 
-function logout () {
-  return api.post('/auth/logout')
+async function login (payload) {
+  try {
+    return await api.post('/auth/login', payload)
+  } catch (error) {
+    handleError(error, 'Login failed')
+  }
+}
+
+async function logout () {
+  try {
+    return await api.post ('/auth/logout')
+  } catch (error) {
+    handleError(error, 'Logout failed')
+  }
 }
 
 async function fetchSearchData (url, searchParams) {
-  const { data: searchData } = await api.get(url, { params: searchParams })
-  const { data: nextSearchData } = await api.get(searchData.next)
+  try {
+    const { data: searchData } = await api.get(url, { params: searchParams })
+    const { data: nextSearchData } = await api.get(searchData.next)
 
-  return {
-    ...searchData,
-    next: nextSearchData.resultIds.length ? searchData.next : ''
+    return {
+      ...searchData,
+      next: nextSearchData.resultIds.length ? searchData.next : ''
+    }
+  } catch (error) {
+    handleError(error, 'Fetching search data failed')
   }
 }
 
 async function fetchDogs (resultIds) {
-  const { data } = await api.post('/dogs', resultIds)
-  return data
+  try {
+    const { data } = await api.post('/dogs', resultIds)
+    return data
+  } catch (error) {
+    handleError(error, 'Fetching dogs failed')
+  }
 }
 
 async function fetchMatchedDogId (payload) {
-  const { data } = await api.post('/dogs/match', payload)
-  return data.match
+  try {
+    const { data } = await api.post('/dogs/match', payload)
+    return data.match
+  } catch (error) {
+    handleError(error, 'Fetching matched dog ID failed')
+  }
 }
 
 export {

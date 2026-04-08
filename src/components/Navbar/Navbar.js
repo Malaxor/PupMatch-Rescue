@@ -21,14 +21,10 @@ export function Navbar() {
   const handleLogout = () => setIsLoggedIn(false)
 
   async function logoutUser () {
-    try {
-      await logout()
-      handleLogout()
-      dispatch(resetState())
-      navigate('PupMatch-Rescue')
-    } catch (error) {
-      console.error('Logout failed:', error)
-    }
+    await logout()
+    handleLogout()
+    dispatch(resetState())
+    navigate('PupMatch-Rescue')
   }
 
   function handleClick () {
