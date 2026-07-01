@@ -64,7 +64,6 @@ export function DogSearch () {
     e.preventDefault()
 
     dispatch(setLoading(true))
-    dispatch(setHasSearched(false))
     dispatch(emptyDogs())
     dispatch(setSearchQueries({
       prevSearchQuery: '',
