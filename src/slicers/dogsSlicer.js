@@ -5,7 +5,7 @@ const initialState = {
   likedDogs: [],
   prevSearchQuery: '',
   nextSearchQuery: '',
-  hasResults: null,
+  hasSearched: false,
   loading: false
 }
 
@@ -19,8 +19,8 @@ const dogsSlicer = createSlice({
     emptyDogs(state) {
       state.dogs = []
     },
-    setHasResults(state, action) {
-      state.hasResults = action.payload
+    setHasSearched(state, action) {
+      state.hasSearched = action.payload
     },
     setLoading(state, action) {
       state.loading = action.payload
@@ -51,7 +51,7 @@ export const {
   actions: { 
     addDogs, 
     emptyDogs, 
-    setHasResults, 
+    setHasSearched, 
     setLoading, 
     setSearchQueries,
     addLikedDog,

@@ -1,7 +1,7 @@
 export { 
   addDogs, 
   emptyDogs,
-  setHasResults,
+  setHasSearched,
   setLoading,
   addLikedDog,
   removeLikedDog,

@@ -6,7 +6,7 @@ import {
   emptyDogs,
   setSearchQueries,
   setLoading,
-  setHasResults 
+  setHasSearched 
 } from '../../slicers'
 import { capitalizeFirstLetter } from '../../utils';
 import { fetchDogs, fetchSearchData } from '../../api'
@@ -64,7 +64,7 @@ export function DogSearch () {
     e.preventDefault()
 
     dispatch(setLoading(true))
-    dispatch(setHasResults(null))
+    dispatch(setHasSearched(false))
     dispatch(emptyDogs())
     dispatch(setSearchQueries({
       prevSearchQuery: '',
@@ -80,13 +80,12 @@ export function DogSearch () {
 
     const dogsArr = await fetchDogs(searchData.resultIds)
     dispatch(setLoading(false))
+    dispatch(setHasSearched(true))
     
     if (dogsArr.length) {
-     dispatch(addDogs(dogsArr));
-    } else {
-     dispatch(setHasResults(false));
+      dispatch(addDogs(dogsArr))
+    }
   }
-}
 
   const options = [
     { value: 'breed:asc', content: 'Breed - Ascending' },
